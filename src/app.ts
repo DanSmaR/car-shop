@@ -2,7 +2,7 @@ import express from 'express';
 import IController from './Interfaces/IController';
 import ErrorMiddleware from './Middleware/errorMiddleware';
 
-class App {
+export class App {
   public readonly app: express.Express;
 
   constructor(controllers: IController[]) {
@@ -16,10 +16,6 @@ class App {
     this.app.use(express.json());
   }
 
-  public start(PORT: string | number): void {
-    this.app.listen(PORT, () => console.log(`Running server on port: ${PORT}`));
-  }
-
   private initializeControllers(controllers: IController[]): void {
     controllers.forEach((controller) => {
       this.app.use('/', controller.router);
@@ -31,4 +27,4 @@ class App {
   }
 }
 
-export default App;
+export default new App().app;
