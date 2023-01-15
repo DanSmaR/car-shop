@@ -1,5 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import IController from '../Interfaces/IController';
+import IController from '../Interfaces/Controller/IController';
+import ICar from '../Interfaces/Entities/Car/ICar';
 
 export default class CarController implements IController {
   private readonly _path = '/cars';

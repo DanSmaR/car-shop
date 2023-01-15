@@ -1,5 +1,5 @@
 import express from 'express';
-import IController from './Interfaces/IController';
+import IController from './Interfaces/Controller/IController';
 import ErrorMiddleware from './Middleware/errorMiddleware';
 
 export class App {
