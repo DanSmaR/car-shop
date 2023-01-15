@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import IController from '../Interfaces/IController';
 import ICar from '../Interfaces/ICar';
+import ICarService from '../Interfaces/ICarService';
 
 export default class CarController implements IController {
   private readonly _path = '/cars';
@@ -28,7 +29,7 @@ export default class CarController implements IController {
     next: NextFunction,
   ): Promise<Response | void> => {
     try {
-      const car = await this.carService.createCar(req.body);
+      const car = await this.carService.registerCar(req.body);
       res.status(201).json(car);
     } catch (error) {
       next(error);
