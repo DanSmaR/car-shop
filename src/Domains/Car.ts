@@ -1,7 +1,7 @@
-import ICar from '../Interfaces/ICar';
+import ICarWithId from '../Interfaces/ICarWithId';
 
 export default class Car {
-  protected _id: string | undefined;
+  protected _id: string;
   protected _model: string;
   protected _year: number;
   protected _color: string;
@@ -10,7 +10,7 @@ export default class Car {
   private _doorsQty: number;
   private _seatsQty: number;
 
-  constructor(car: ICar) {
+  constructor(car: ICarWithId) {
     this._id = car.id;
     this._model = car.model;
     this._year = car.year;
