@@ -19,10 +19,10 @@ export default class CarController implements IController {
   }
 
   private initializeRoutes(): void {
-    this.router.post(this.path, this.createCarHandler);
+    this.router.post(this.path, this.registerCarHandler);
   }
 
-  private createCarHandler = async (
+  private registerCarHandler = async (
     req: Request<unknown, unknown, ICar>,
     res: Response,
     next: NextFunction,
