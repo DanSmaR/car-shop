@@ -1,6 +1,6 @@
 import ICar from './ICar';
-import ICarWithId from './ICarWithId';
+import ICarWithIdAndStatus from './ICarWithIdAndStatus';
 
 export default interface ICarService {
-  registerCar(carData: ICar): Promise<ICarWithId | null>;
+  registerCar(carData: ICar): Promise<ICarWithIdAndStatus | null>;
 }

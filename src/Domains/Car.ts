@@ -1,16 +1,16 @@
-import ICarWithId from '../Interfaces/ICarWithId';
+import ICarWithIdAndStatus from '../Interfaces/ICarWithIdAndStatus';
 
 export default class Car {
   protected _id: string;
   protected _model: string;
   protected _year: number;
   protected _color: string;
-  protected _status: boolean | undefined;
+  protected _status: boolean;
   protected _buyValue: number;
   private _doorsQty: number;
   private _seatsQty: number;
 
-  constructor(car: ICarWithId) {
+  constructor(car: ICarWithIdAndStatus) {
     this._id = car.id;
     this._model = car.model;
     this._year = car.year;
@@ -53,7 +53,7 @@ export default class Car {
     return this._status;
   }
 
-  set status(status: boolean | undefined) {
+  set status(status: boolean) {
     this._status = status;
   }
 
