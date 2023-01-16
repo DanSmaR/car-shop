@@ -1,75 +1,75 @@
 import ICarWithIdAndStatus from '../Interfaces/ICarWithIdAndStatus';
 
 export default class Car {
-  protected id: string;
-  protected model: string;
-  protected year: number;
-  protected color: string;
-  protected status: boolean;
-  protected buyValue: number;
-  private doorsQty: number;
-  private seatsQty: number;
+  protected _id: string;
+  protected _model: string;
+  protected _year: number;
+  protected _color: string;
+  protected _status: boolean;
+  protected _buyValue: number;
+  private _doorsQty: number;
+  private _seatsQty: number;
 
   constructor(car: ICarWithIdAndStatus) {
-    this.id = car.id;
-    this.model = car.model;
-    this.year = car.year;
-    this.color = car.color;
-    this.status = car.status;
-    this.buyValue = car.buyValue;
-    this.doorsQty = car.doorsQty;
-    this.seatsQty = car.seatsQty;
+    this._id = car.id;
+    this._model = car.model;
+    this._year = car.year;
+    this._color = car.color;
+    this._status = car.status;
+    this._buyValue = car.buyValue;
+    this._doorsQty = car.doorsQty;
+    this._seatsQty = car.seatsQty;
   }
 
-  getId() {
-    return this.id;
+  get id() {
+    return this._id;
   }
 
-  getModel() {
-    return this.model;
+  get model() {
+    return this._model;
   }
 
-  setModel(_model: string) {
-    this.model = _model;
+  set model(model: string) {
+    this._model = model;
   }
 
-  getYear() {
-    return this.year;
+  get year() {
+    return this._year;
   }
 
-  setYear(_year: number) {
-    this.year = _year;
+  set year(year: number) {
+    this._year = year;
   }
 
-  geColor() {
-    return this.color;
+  get color() {
+    return this._color;
   }
 
-  setColor(_color: string) {
-    this.color = _color;
+  set color(color: string) {
+    this._color = color;
   }
 
-  getStatus() {
-    return this.status;
+  get status() {
+    return this._status;
   }
 
-  setStatus(_status: boolean) {
-    this.status = _status;
+  set status(status: boolean) {
+    this._status = status;
   }
 
-  getBuyValue() {
-    return this.buyValue;
+  get buyValue() {
+    return this._buyValue;
   }
 
-  setBuyValue(_buyValue: number) {
-    this.buyValue = _buyValue;
+  set buyValue(buyValue: number) {
+    this._buyValue = buyValue;
   }
 
-  getDoorsQty() {
-    return this.doorsQty;
+  get doorsQty() {
+    return this._doorsQty;
   }
 
-  getSeatsQty() {
-    return this.seatsQty;
+  get seatsQty() {
+    return this._seatsQty;
   }
 }
