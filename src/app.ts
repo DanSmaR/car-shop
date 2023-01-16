@@ -1,4 +1,5 @@
 import express from 'express';
+import CarController from './Controllers/CarController';
 import IController from './Interfaces/IController';
 import ErrorMiddleware from './Middleware/errorMiddleware';
 
@@ -27,4 +28,6 @@ export class App {
   }
 }
 
-export default new App().app;
+const controllers: IController[] = [new CarController()];
+
+export default new App(controllers).app;
