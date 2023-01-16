@@ -1,6 +1,7 @@
-import { Schema } from 'mongoose';
+import { Schema, isValidObjectId } from 'mongoose';
 import ICar from '../Interfaces/ICar';
 import ICarModel from '../Interfaces/ICarModel';
+import HttpException from '../Utils/Exceptions/HttpException';
 import AbstractMongooseODM from './AbstractMongooseODM';
 
 export default class CarMongooseODM extends AbstractMongooseODM<ICar> implements ICarModel {
@@ -15,5 +16,16 @@ export default class CarMongooseODM extends AbstractMongooseODM<ICar> implements
       seatsQty: { type: Number, required: true },
     });
     super(schema, 'Car');
+  }
+
+  public async find(): Promise<ICar[]> {
+    return this.model.find();
+  }
+
+  public async findOne(_id: string): Promise<ICar | Error> {
+    if (!isValidObjectId(_id)) throw new HttpException(422, 'Invalid mongo id');
+    const carFound = await this.model.findOne({ _id });
+    if (carFound === null) throw new HttpException(404, 'Car not found');
+    return carFound;
   }
 }
