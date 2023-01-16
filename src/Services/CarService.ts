@@ -8,18 +8,18 @@ import CarMongooseODM from '../Models/CarMongooseODM';
 export default class CarService implements ICarService {
   constructor(private carModel: ICarModel = new CarMongooseODM()) {}
 
-  private createCarDomain(car: ICarWithIdAndStatus | null): ICarWithIdAndStatus | null {
+  private createCarDomain(car: ICar | null): ICar | null {
     if (car) {
       const newCar = new Car(car);
       return {
-        id: newCar.id,
-        model: newCar.model,
-        year: newCar.year,
-        color: newCar.color,
-        status: newCar.status,
-        buyValue: newCar.buyValue,
-        doorsQty: newCar.doorsQty,
-        seatsQty: newCar.seatsQty,
+        id: newCar.getId(),
+        model: newCar.getModel(),
+        year: newCar.getYear(),
+        color: newCar.getColor(),
+        status: newCar.getStatus(),
+        buyValue: newCar.getBuyValue(),
+        doorsQty: newCar.getDoorsQty(),
+        seatsQty: newCar.getSeatsQty(),
       };
     }
     return null;
@@ -27,6 +27,6 @@ export default class CarService implements ICarService {
 
   public async registerCar(carData: ICar): Promise<ICarWithIdAndStatus | null> {
     const newCar = await this.carModel.create(carData);
-    return this.createCarDomain(newCar as ICarWithIdAndStatus);
+    return this.createCarDomain(newCar) as ICarWithIdAndStatus | null;
   }
 }
