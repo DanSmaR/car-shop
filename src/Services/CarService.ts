@@ -29,4 +29,15 @@ export default class CarService implements ICarService {
     const newCar = await this.carModel.create(carData);
     return this.createCarDomain(newCar) as ICarWithIdAndStatus | null;
   }
+
+  public async getCars(): Promise<ICarWithIdAndStatus[]> {
+    const carsFound = await this.carModel.find();
+    const carsDomainList = carsFound.map((car) => this.createCarDomain(car));
+    return carsDomainList as Array<ICarWithIdAndStatus>;
+  }
+
+  public async getCarById(id: string): Promise<ICarWithIdAndStatus> {
+    const carFound = await this.carModel.findOne(id);
+    return this.createCarDomain(carFound) as ICarWithIdAndStatus;
+  }
 }

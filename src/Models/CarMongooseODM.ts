@@ -22,7 +22,7 @@ export default class CarMongooseODM extends AbstractMongooseODM<ICar> implements
     return this.model.find();
   }
 
-  public async findOne(_id: string): Promise<ICar | Error> {
+  public async findOne(_id: string): Promise<ICar> {
     if (!isValidObjectId(_id)) throw new HttpException(422, 'Invalid mongo id');
     const carFound = await this.model.findOne({ _id });
     if (carFound === null) throw new HttpException(404, 'Car not found');
