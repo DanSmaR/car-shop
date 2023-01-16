@@ -10,7 +10,17 @@ export default class CarService implements ICarService {
 
   private createCarDomain(car: ICarWithIdAndStatus | null): ICarWithIdAndStatus | null {
     if (car) {
-      return new Car(car);
+      const newCar = new Car(car);
+      return {
+        id: newCar.id,
+        model: newCar.model,
+        year: newCar.year,
+        color: newCar.color,
+        status: newCar.status,
+        buyValue: newCar.buyValue,
+        doorsQty: newCar.doorsQty,
+        seatsQty: newCar.seatsQty,
+      };
     }
     return null;
   }
