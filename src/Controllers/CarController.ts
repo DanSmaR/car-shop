@@ -2,6 +2,7 @@ import { Router, Request, Response, NextFunction } from 'express';
 import IController from '../Interfaces/IController';
 import ICar from '../Interfaces/ICar';
 import ICarService from '../Interfaces/ICarService';
+import CarService from '../Services/CarService';
 
 export default class CarController implements IController {
   private readonly _path = '/cars';
