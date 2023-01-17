@@ -23,7 +23,7 @@ export default abstract class AbstractMongooseODM<T> {
     return this.model.create({ ...data });
   }
 
-  protected static validateId(_id: string): void | Error {
+  static validateId(_id: string): void | Error {
     if (!isValidObjectId(_id)) throw new HttpException(422, 'Invalid mongo id');
   }
 }

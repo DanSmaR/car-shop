@@ -22,13 +22,11 @@ export default class CarMongooseODM extends AbstractMongooseODM<ICar> implements
   }
 
   public async findOne(_id: string): Promise<ICar | null> {
-    AbstractMongooseODM.validateId(_id);
     const carFound = await this.model.findOne({ _id });
     return carFound;
   }
 
   public async updateById(_id: string, dataToUpdate: Partial<ICar>): Promise<ICar | null> {
-    AbstractMongooseODM.validateId(_id);
     return this.model.findByIdAndUpdate(
       { _id },
       { ...dataToUpdate } as UpdateQuery<ICar>,

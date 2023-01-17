@@ -3,6 +3,7 @@ import IController from '../Interfaces/IController';
 import ICar from '../Interfaces/ICar';
 import ICarService from '../Interfaces/ICarService';
 import CarService from '../Services/CarService';
+import validateIdMiddleware from '../Middleware/validateIdMiddleware';
 
 export default class CarController implements IController {
   private readonly _path = '/cars';
@@ -23,7 +24,7 @@ export default class CarController implements IController {
   private initializeRoutes(): void {
     this.router.post(this.path, this.registerCarHandler);
     this.router.get(this.path, this.getCarsHandler);
-    this.router.get(`${this.path}/:id`, this.getCarByIdHandler);
+    this.router.get(`${this.path}/:id`, validateIdMiddleware, this.getCarByIdHandler);
   }
 
   private registerCarHandler = async (
