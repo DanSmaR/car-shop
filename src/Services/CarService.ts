@@ -39,4 +39,10 @@ export default class CarService implements ICarService {
     if (carFound === null) throw new HttpException(404, 'Car not found');
     return this.createCarDomain(carFound) as ICarWithIdAndStatus;
   }
+
+  public async updateCarById(id: string, updatedData: Partial<ICar>): Promise<ICarWithIdAndStatus> {
+    const carUpdated = await this.carModel.updateById(id, updatedData);
+    if (carUpdated === null) throw new HttpException(404, 'Car not found');
+    return this.createCarDomain(carUpdated) as ICarWithIdAndStatus;
+  }
 }
