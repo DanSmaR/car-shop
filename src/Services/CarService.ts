@@ -4,6 +4,7 @@ import ICarModel from '../Interfaces/ICarModel';
 import ICarService from '../Interfaces/ICarService';
 import ICarWithIdAndStatus from '../Interfaces/ICarWithIdAndStatus';
 import CarMongooseODM from '../Models/CarMongooseODM';
+import HttpException from '../Utils/Exceptions/HttpException';
 
 export default class CarService implements ICarService {
   constructor(private carModel: ICarModel = new CarMongooseODM()) {}
@@ -35,6 +36,7 @@ export default class CarService implements ICarService {
 
   public async getCarById(id: string): Promise<ICarWithIdAndStatus> {
     const carFound = await this.carModel.findOne(id);
+    if (carFound === null) throw new HttpException(404, 'Car not found');
     return this.createCarDomain(carFound) as ICarWithIdAndStatus;
   }
 }
