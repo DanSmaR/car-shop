@@ -3,7 +3,7 @@ import IController from '../Interfaces/IController';
 import ICar from '../Interfaces/ICar';
 import ICarService from '../Interfaces/ICarService';
 import CarService from '../Services/CarService';
-import validateIdMiddleware from '../Middleware/validateIdMiddleware';
+import ValidateIdMiddleware from '../Middleware/validateIdMiddleware';
 
 export default class CarController implements IController {
   private readonly _path = '/cars';
@@ -24,7 +24,8 @@ export default class CarController implements IController {
   private initializeRoutes(): void {
     this.router.post(this.path, this.registerCarHandler);
     this.router.get(this.path, this.getCarsHandler);
-    this.router.get(`${this.path}/:id`, validateIdMiddleware, this.getCarByIdHandler);
+    this.router.get(`${this.path}/:id`, ValidateIdMiddleware, this.getCarByIdHandler);
+    this.router.put(`${this.path}/:id`, ValidateIdMiddleware, this.updateCarByIdHandler);
   }
 
   private registerCarHandler = async (
@@ -61,6 +62,19 @@ export default class CarController implements IController {
     try {
       const carFound = await this.carService.getCarById(req.params.id);
       res.status(200).json(carFound);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  private updateCarByIdHandler = async (
+    req: Request<{ id: string }, unknown, Partial<ICar>>,
+    res: Response,
+    next: NextFunction,
+  ): Promise<Response | void> => {
+    try {
+      const carUpdated = await this.carService.updateCarById(req.params.id, req.body);
+      res.status(200).json(carUpdated);
     } catch (error) {
       next(error);
     }
