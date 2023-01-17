@@ -1,4 +1,4 @@
-import { Schema, isValidObjectId } from 'mongoose';
+import { Schema } from 'mongoose';
 import ICar from '../Interfaces/ICar';
 import ICarModel from '../Interfaces/ICarModel';
 import HttpException from '../Utils/Exceptions/HttpException';
@@ -23,7 +23,7 @@ export default class CarMongooseODM extends AbstractMongooseODM<ICar> implements
   }
 
   public async findOne(_id: string): Promise<ICar> {
-    if (!isValidObjectId(_id)) throw new HttpException(422, 'Invalid mongo id');
+    AbstractMongooseODM.validateId(_id);
     const carFound = await this.model.findOne({ _id });
     if (carFound === null) throw new HttpException(404, 'Car not found');
     return carFound;
