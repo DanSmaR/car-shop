@@ -1,7 +1,6 @@
-import { Schema } from 'mongoose';
+import { Schema, UpdateQuery } from 'mongoose';
 import ICar from '../Interfaces/ICar';
 import ICarModel from '../Interfaces/ICarModel';
-import HttpException from '../Utils/Exceptions/HttpException';
 import AbstractMongooseODM from './AbstractMongooseODM';
 
 export default class CarMongooseODM extends AbstractMongooseODM<ICar> implements ICarModel {
@@ -22,10 +21,18 @@ export default class CarMongooseODM extends AbstractMongooseODM<ICar> implements
     return this.model.find();
   }
 
-  public async findOne(_id: string): Promise<ICar> {
+  public async findOne(_id: string): Promise<ICar | null> {
     AbstractMongooseODM.validateId(_id);
     const carFound = await this.model.findOne({ _id });
-    if (carFound === null) throw new HttpException(404, 'Car not found');
     return carFound;
+  }
+
+  public async updateById(_id: string, dataToUpdate: Partial<ICar>): Promise<ICar | null> {
+    AbstractMongooseODM.validateId(_id);
+    return this.model.findByIdAndUpdate(
+      { _id },
+      { ...dataToUpdate } as UpdateQuery<ICar>,
+      { new: true },
+    );
   }
 }
