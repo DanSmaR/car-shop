@@ -7,8 +7,9 @@ function errorMiddleware(
   res: Response,
   _next: NextFunction,
 ): void {
+  console.error(error);
   const status = error.status || 500;
-  const message = error.message || 'Something went wrong';
+  const message = error.status ? error.message : 'Something went wrong';
   res.status(status).send({
     status,
     message,
