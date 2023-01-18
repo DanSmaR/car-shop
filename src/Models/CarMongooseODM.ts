@@ -1,16 +1,12 @@
 import { Schema, UpdateQuery } from 'mongoose';
 import ICar from '../Interfaces/ICar';
 import ICarModel from '../Interfaces/ICarModel';
-import AbstractMongooseODM from './AbstractMongooseODM';
+import AbstractMongooseODM from './AbstractODM';
 
 export default class CarMongooseODM extends AbstractMongooseODM<ICar> implements ICarModel {
   constructor() {
     const schema = new Schema<ICar>({
-      model: { type: String, required: true },
-      year: { type: Number, required: true },
-      color: { type: String, required: true },
-      status: { type: Boolean, required: false, default: false },
-      buyValue: { type: Number, required: true },
+      ...AbstractMongooseODM.vehicleSchema,
       doorsQty: { type: Number, required: true },
       seatsQty: { type: Number, required: true },
     });
