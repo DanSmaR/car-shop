@@ -1,15 +1,16 @@
 // eslint-disable-next-line max-classes-per-file
-import ICar from '../Interfaces/ICar';
+import IMotorcycle from '../Interfaces/IMotorcycle';
+import TCategoryVehicle from '../Utils/Types/CategoryVehicle';
 import Vehicle from './Vehicle';
 
-export default class Car extends Vehicle {
-  private doorsQty: number;
-  private seatsQty: number;
+export default class Motorcycle extends Vehicle {
+  private category: TCategoryVehicle;
+  private engineCapacity: number;
 
-  constructor(car: ICar) {
-    super(car);
-    this.doorsQty = car.doorsQty;
-    this.seatsQty = car.seatsQty;
+  constructor(moto: IMotorcycle) {
+    super(moto);
+    this.category = moto.category;
+    this.engineCapacity = moto.engineCapacity;
   }
 
   getId() {
@@ -56,11 +57,11 @@ export default class Car extends Vehicle {
     this.buyValue = _buyValue;
   }
 
-  getDoorsQty() {
-    return this.doorsQty;
+  getCategory() {
+    return this.category;
   }
 
-  getSeatsQty() {
-    return this.seatsQty;
+  getEngineCapacity() {
+    return this.engineCapacity;
   }
 }

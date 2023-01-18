@@ -1,15 +1,21 @@
 // eslint-disable-next-line max-classes-per-file
-import ICar from '../Interfaces/ICar';
-import Vehicle from './Vehicle';
+import IVehicle from '../Interfaces/IVehicle';
 
-export default class Car extends Vehicle {
-  private doorsQty: number;
-  private seatsQty: number;
+export default abstract class Vehicle {
+  protected id: string | undefined;
+  protected model: string;
+  protected year: number;
+  protected color: string;
+  protected status: boolean | undefined;
+  protected buyValue: number;
 
-  constructor(car: ICar) {
-    super(car);
-    this.doorsQty = car.doorsQty;
-    this.seatsQty = car.seatsQty;
+  constructor(vehicle: IVehicle) {
+    this.id = vehicle.id;
+    this.model = vehicle.model;
+    this.year = vehicle.year;
+    this.color = vehicle.color;
+    this.status = vehicle.status;
+    this.buyValue = vehicle.buyValue;
   }
 
   getId() {
@@ -54,13 +60,5 @@ export default class Car extends Vehicle {
 
   setBuyValue(_buyValue: number) {
     this.buyValue = _buyValue;
-  }
-
-  getDoorsQty() {
-    return this.doorsQty;
-  }
-
-  getSeatsQty() {
-    return this.seatsQty;
   }
 }
