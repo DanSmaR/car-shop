@@ -1,9 +1,12 @@
 import { Schema } from 'mongoose';
 import IMotorcycle from '../Interfaces/IMotorcycle';
-import IMotorcycleModel from '../Interfaces/Models/IMotorcycleModel';
+// import IMotorcycleModel from '../Interfaces/Models/IMotorcycleModel';
+import IVehicleModel from '../Interfaces/Models/IVehicleModel';
 import AbstractMongooseODM from './AbstractODM';
 
-class MotorcycleMongooseODM extends AbstractMongooseODM<IMotorcycle> implements IMotorcycleModel {
+class MotorcycleMongooseODM 
+  extends AbstractMongooseODM<IMotorcycle>
+  implements IVehicleModel<IMotorcycle> {
   constructor() {
     const schema = new Schema<IMotorcycle>({
       ...AbstractMongooseODM.vehicleSchema,
