@@ -1,6 +1,6 @@
 import { Schema, UpdateQuery } from 'mongoose';
 import ICar from '../Interfaces/ICar';
-import ICarModel from '../Interfaces/ICarModel';
+import ICarModel from '../Interfaces/Models/ICarModel';
 import AbstractMongooseODM from './AbstractODM';
 
 export default class CarMongooseODM extends AbstractMongooseODM<ICar> implements ICarModel {

@@ -1,4 +1,4 @@
-import IMotorcycle from './IMotorcycle';
+import IMotorcycle from '../IMotorcycle';
 
 export default interface IMotorcycleModel {
   create(carData: IMotorcycle): Promise<IMotorcycle>;

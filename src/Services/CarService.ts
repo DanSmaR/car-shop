@@ -1,7 +1,7 @@
 import Car from '../Domains/Car';
 import ICar from '../Interfaces/ICar';
-import ICarModel from '../Interfaces/ICarModel';
-import ICarService from '../Interfaces/ICarService';
+import ICarModel from '../Interfaces/Models/ICarModel';
+import ICarService from '../Interfaces/Services/ICarService';
 import CarMongooseODM from '../Models/CarMongooseODM';
 import HttpException from '../Utils/Exceptions/HttpException';
 

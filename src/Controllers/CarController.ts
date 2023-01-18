@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import IController from '../Interfaces/IController';
 import ICar from '../Interfaces/ICar';
-import ICarService from '../Interfaces/ICarService';
+import ICarService from '../Interfaces/Services/ICarService';
 import CarService from '../Services/CarService';
 import ValidateIdMiddleware from '../Middleware/validateIdMiddleware';
 

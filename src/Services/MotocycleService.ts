@@ -1,6 +1,6 @@
 import Motorcycle from '../Domains/Motorcycle';
 import IMotorcycle from '../Interfaces/IMotorcycle';
-import IMotorcycleModel from '../Interfaces/IMotorcycleModel';
+import IMotorcycleModel from '../Interfaces/Models/IMotorcycleModel';
 import MotorcycleMongooseODM from '../Models/MotorcycleMongooseODM';
 import IVehicleService from '../Interfaces/IVehicleService';
 // import HttpException from '../Utils/Exceptions/HttpException';
