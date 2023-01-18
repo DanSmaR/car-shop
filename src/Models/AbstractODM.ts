@@ -30,6 +30,10 @@ export default abstract class AbstractMongooseODM<T> {
     return this.model.create({ ...data });
   }
 
+  public async find(): Promise<T[]> {
+    return this.model.find();
+  }
+
   static validateId(_id: string): void | Error {
     if (!isValidObjectId(_id)) throw new HttpException(422, 'Invalid mongo id');
   }

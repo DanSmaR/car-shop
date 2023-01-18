@@ -16,10 +16,6 @@ class MotorcycleMongooseODM
     super(schema, 'Motorcycle');
   }
 
-  // public async find(): Promise<IMotorcycle[]> {
-  //   return this.model.find();
-  // }
-
   // public async findOne(_id: string): Promise<IMotorcycle | null> {
   //   const carFound = await this.model.findOne({ _id });
   //   return carFound;
