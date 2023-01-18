@@ -13,50 +13,6 @@ export default class Motorcycle extends Vehicle {
     this.engineCapacity = moto.engineCapacity;
   }
 
-  getId() {
-    return this.id;
-  }
-
-  getModel() {
-    return this.model;
-  }
-
-  setModel(_model: string) {
-    this.model = _model;
-  }
-
-  getYear() {
-    return this.year;
-  }
-
-  setYear(_year: number) {
-    this.year = _year;
-  }
-
-  getColor() {
-    return this.color;
-  }
-
-  setColor(_color: string) {
-    this.color = _color;
-  }
-
-  getStatus() {
-    return this.status;
-  }
-
-  setStatus(_status: boolean | undefined) {
-    this.status = _status;
-  }
-
-  getBuyValue() {
-    return this.buyValue;
-  }
-
-  setBuyValue(_buyValue: number) {
-    this.buyValue = _buyValue;
-  }
-
   getCategory() {
     return this.category;
   }

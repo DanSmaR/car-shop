@@ -34,7 +34,7 @@ export default class CarController implements IController {
     next: NextFunction,
   ): Promise<Response | void> => {
     try {
-      const car = await this.carService.registerCar(req.body);
+      const car = await this.carService.registerVehicle(req.body);
       res.status(201).json(car);
     } catch (error) {
       next(error);
