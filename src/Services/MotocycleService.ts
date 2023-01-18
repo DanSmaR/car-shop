@@ -2,7 +2,7 @@ import Motorcycle from '../Domains/Motorcycle';
 import IMotorcycle from '../Interfaces/IMotorcycle';
 import IMotorcycleModel from '../Interfaces/Models/IMotorcycleModel';
 import MotorcycleMongooseODM from '../Models/MotorcycleMongooseODM';
-import IVehicleService from '../Interfaces/IVehicleService';
+import IVehicleService from '../Interfaces/Services/IVehicleService';
 // import HttpException from '../Utils/Exceptions/HttpException';
 
 export default class MotorcycleService implements IVehicleService<IMotorcycle, Motorcycle> {

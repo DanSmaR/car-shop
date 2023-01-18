@@ -3,7 +3,7 @@ import IController from '../Interfaces/IController';
 import IMotorcycle from '../Interfaces/IMotorcycle';
 import Motorcycle from '../Domains/Motorcycle';
 // import IMotorcycleService from '../Interfaces/IMotorcycleService';
-import IVehicleService from '../Interfaces/IVehicleService';
+import IVehicleService from '../Interfaces/Services/IVehicleService';
 import MotocycleService from '../Services/MotocycleService';
 // import ValidateIdMiddleware from '../Middleware/validateIdMiddleware';
 
