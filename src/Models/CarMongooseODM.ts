@@ -1,6 +1,7 @@
 import { Schema, UpdateQuery } from 'mongoose';
 import ICar from '../Interfaces/ICar';
 import ICarModel from '../Interfaces/Models/ICarModel';
+import VehicleTypes from '../Utils/Enum/enumVehicle';
 import AbstractMongooseODM from './AbstractODM';
 
 export default class CarMongooseODM extends AbstractMongooseODM<ICar> implements ICarModel {
@@ -9,6 +10,7 @@ export default class CarMongooseODM extends AbstractMongooseODM<ICar> implements
       ...AbstractMongooseODM.vehicleSchema,
       doorsQty: { type: Number, required: true },
       seatsQty: { type: Number, required: true },
+      type: { type: String, required: false, default: VehicleTypes.CAR },
     });
     super(schema, 'Car');
   }

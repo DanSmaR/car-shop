@@ -2,6 +2,7 @@ import { Schema } from 'mongoose';
 import IMotorcycle from '../Interfaces/IMotorcycle';
 // import IMotorcycleModel from '../Interfaces/Models/IMotorcycleModel';
 import IVehicleModel from '../Interfaces/Models/IVehicleModel';
+import VehicleTypes from '../Utils/Enum/enumVehicle';
 import AbstractMongooseODM from './AbstractODM';
 
 class MotorcycleMongooseODM 
@@ -12,6 +13,7 @@ class MotorcycleMongooseODM
       ...AbstractMongooseODM.vehicleSchema,
       category: { type: String, required: true },
       engineCapacity: { type: Number, required: true },
+      type: { type: String, required: false, default: VehicleTypes.MOTORCYCLE },
     });
     super(schema, 'Motorcycle');
   }

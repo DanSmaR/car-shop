@@ -17,4 +17,10 @@ export default class MotorcycleService implements IVehicleService<IMotorcycle, M
     const newMoto = await this.motoModel.create(motoData);
     return this.createMotoDomain(newMoto);
   }
+
+  public async getVehicles(): Promise<Motorcycle[]> {
+    const motosFound = await this.motoModel.find();
+    const motosDomainList = motosFound.map((car) => this.createMotoDomain(car));
+    return motosDomainList;
+  }
 }
