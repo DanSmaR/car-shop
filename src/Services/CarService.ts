@@ -11,17 +11,6 @@ export default class CarService extends VehicleService<ICar, Car> implements ICa
     super(carModel);
   }
 
-  public async registerVehicle(carData: ICar): Promise<Car> {
-    const newCar = await this.carModel.create(carData);
-    return this.createVehicleDomain(newCar);
-  }
-
-  public async getVehicles(): Promise<Car[]> {
-    const carsFound = await this.carModel.find();
-    const carsDomainList = carsFound.map((car) => this.createVehicleDomain(car));
-    return carsDomainList;
-  }
-
   public async getCarById(id: string): Promise<Car> {
     const carFound = await this.carModel.findOne(id);
     if (carFound === null) throw new HttpException(404, 'Car not found');
