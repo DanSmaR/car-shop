@@ -3,8 +3,6 @@ import Motorcycle from '../Domains/Motorcycle';
 import IVehicleModel from '../Interfaces/Models/IVehicleModel';
 import VehicleTypes from '../Utils/Enum/enumVehicle';
 import notFoundMsg, { INotFoundMsg } from '../Utils/Erros/NotFoundMessages';
-// import notFoundMsgByDomainType from '../Utils/Erros/NotFoundMessages';
-// import notFoundMsg from '../Utils/Erros/NotFoundMessages';
 import HttpException from '../Utils/Exceptions/HttpException';
 import TVehicleInterfaceOptions from '../Utils/Types/TVehicleInterfaceOptions';
 import TVehicleDomainOptions from '../Utils/Types/TVehicleDomainOptions';
