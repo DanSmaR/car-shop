@@ -1,8 +1,14 @@
 import express from 'express';
-import CarController from './Controllers/CarController';
-import MotorcycleController from './Controllers/MotorcycleController';
+import VehicleController from './Controllers/VehicleController';
+import Car from './Domains/Car';
+import Motorcycle from './Domains/Motorcycle';
+import ICar from './Interfaces/ICar';
 import IController from './Interfaces/IController';
+import IMotorcycle from './Interfaces/IMotorcycle';
 import ErrorMiddleware from './Middleware/errorMiddleware';
+import CarMongooseODM from './Models/CarMongooseODM';
+import MotorcycleMongooseODM from './Models/MotorcycleMongooseODM';
+import VehicleService from './Services/VehicleService';
 
 export class App {
   public readonly app: express.Express;
@@ -29,6 +35,12 @@ export class App {
   }
 }
 
-const controllers: IController[] = [new CarController(), new MotorcycleController()];
+const carService = new VehicleService<ICar, Car>(new CarMongooseODM());
+const motoService = new VehicleService<IMotorcycle, Motorcycle>(new MotorcycleMongooseODM());
+
+const carController = new VehicleController(carService, '/cars');
+const motoController = new VehicleController(motoService, '/motorcycles');
+
+const controllers: IController[] = [carController, motoController];
 
 export default new App(controllers).app;
