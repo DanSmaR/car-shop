@@ -2,7 +2,7 @@ import {
   Model,
   models,
   Schema,
-  // UpdateQuery,
+  UpdateQuery,
   model,
   isValidObjectId,
 } from 'mongoose';
@@ -36,6 +36,14 @@ export default abstract class AbstractMongooseODM<T> {
 
   public async findOne(_id: string): Promise<T | null> {
     return this.model.findOne({ _id });
+  }
+
+  public async updateById(_id: string, dataToUpdate: Partial<T>): Promise<T | null> {
+    return this.model.findByIdAndUpdate(
+      { _id },
+      { ...dataToUpdate } as UpdateQuery<T>,
+      { new: true },
+    );
   }
 
   public getModelName(): string {

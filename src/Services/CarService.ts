@@ -1,13 +1,13 @@
 import Car from '../Domains/Car';
 import ICar from '../Interfaces/ICar';
-import ICarModel from '../Interfaces/Models/ICarModel';
+import IVehicleModel from '../Interfaces/Models/IVehicleModel';
 import ICarService from '../Interfaces/Services/ICarService';
 import CarMongooseODM from '../Models/CarMongooseODM';
 import HttpException from '../Utils/Exceptions/HttpException';
 import VehicleService from './AbstractVehicleService';
 
 export default class CarService extends VehicleService<ICar, Car> implements ICarService {
-  constructor(private carModel: ICarModel = new CarMongooseODM()) {
+  constructor(private carModel: IVehicleModel<ICar> = new CarMongooseODM()) {
     super(carModel);
   }
 
