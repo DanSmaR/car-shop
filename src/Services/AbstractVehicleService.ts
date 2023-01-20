@@ -35,6 +35,17 @@ T extends TVehicleInterfaceOptions, X extends TVehicleDomainOptions> {
     return this.createVehicleDomain(vehicleFound);
   }
 
+  public async updateVehicleById(id: string, updatedData: Partial<T>): Promise<X> {
+    const vehicleUpdated = await this.vehicleModel.updateById(id, updatedData);
+    if (vehicleUpdated === null) {
+      throw new HttpException(
+        404,
+        notFoundMsg[this.vehicleModel.getModelName() as keyof INotFoundMsg],
+      );
+    }
+    return this.createVehicleDomain(vehicleUpdated);
+  }
+
   protected createVehicleDomain(vehicle: T): X {
     if (vehicle.type === VehicleTypes.CAR) {
       return new Car(vehicle) as X;

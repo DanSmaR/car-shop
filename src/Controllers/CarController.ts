@@ -1,15 +1,16 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import IController from '../Interfaces/IController';
 import ICar from '../Interfaces/ICar';
-import ICarService from '../Interfaces/Services/ICarService';
 import CarService from '../Services/CarService';
 import ValidateIdMiddleware from '../Middleware/validateIdMiddleware';
+import IVehicleService from '../Interfaces/Services/IVehicleService';
+import Car from '../Domains/Car';
 
 export default class CarController implements IController {
   private readonly _path = '/cars';
   private readonly _router = Router();
 
-  constructor(private carService: ICarService = new CarService()) {
+  constructor(private carService: IVehicleService<ICar, Car> = new CarService()) {
     this.initializeRoutes();
   }
 
@@ -60,7 +61,7 @@ export default class CarController implements IController {
     next: NextFunction,
   ): Promise<Response | void> => {
     try {
-      const carFound = await this.carService.getCarById(req.params.id);
+      const carFound = await this.carService.getVehicleById(req.params.id);
       res.status(200).json(carFound);
     } catch (error) {
       next(error);
@@ -73,7 +74,7 @@ export default class CarController implements IController {
     next: NextFunction,
   ): Promise<Response | void> => {
     try {
-      const carUpdated = await this.carService.updateCarById(req.params.id, req.body);
+      const carUpdated = await this.carService.updateVehicleById(req.params.id, req.body);
       res.status(200).json(carUpdated);
     } catch (error) {
       next(error);
