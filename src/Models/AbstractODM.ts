@@ -7,9 +7,8 @@ import {
   isValidObjectId,
 } from 'mongoose';
 import HttpException from '../Utils/Exceptions/HttpException';
-import TVehicleInterfaceOptions from '../Utils/Types/TVehicleInterfaceOptions';
 
-export default abstract class AbstractMongooseODM<T extends TVehicleInterfaceOptions> {
+export default abstract class AbstractMongooseODM<T> {
   protected model: Model<T>;
   protected schema: Schema;
   protected modelName: string;
