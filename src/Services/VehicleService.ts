@@ -2,7 +2,7 @@ import Car from '../Domains/Car';
 import Motorcycle from '../Domains/Motorcycle';
 import IVehicleModel from '../Interfaces/Models/IVehicleModel';
 import VehicleTypes from '../Utils/Enum/enumVehicle';
-import notFoundMsg, { INotFoundMsg } from '../Utils/Erros/NotFoundMessages';
+import notFoundMsgByModel, { INotFoundMsg } from '../Utils/Erros/NotFoundMessages';
 import HttpException from '../Utils/Exceptions/HttpException';
 import TVehicleInterfaceOptions from '../Utils/Types/TVehicleInterfaceOptions';
 import TVehicleDomainOptions from '../Utils/Types/TVehicleDomainOptions';
@@ -27,7 +27,7 @@ T extends TVehicleInterfaceOptions, X extends TVehicleDomainOptions> {
     if (vehicleFound === null) {
       throw new HttpException(
         404, 
-        notFoundMsg[this.vehicleModel.getModelName() as keyof INotFoundMsg],
+        notFoundMsgByModel[this.vehicleModel.getModelName() as keyof INotFoundMsg],
       );
     }
     return this.createVehicleDomain(vehicleFound);
@@ -38,7 +38,7 @@ T extends TVehicleInterfaceOptions, X extends TVehicleDomainOptions> {
     if (vehicleUpdated === null) {
       throw new HttpException(
         404,
-        notFoundMsg[this.vehicleModel.getModelName() as keyof INotFoundMsg],
+        notFoundMsgByModel[this.vehicleModel.getModelName() as keyof INotFoundMsg],
       );
     }
     return this.createVehicleDomain(vehicleUpdated);
