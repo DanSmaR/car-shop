@@ -18,11 +18,6 @@ class MotorcycleMongooseODM
     super(schema, 'Motorcycle');
   }
 
-  public async findOne(_id: string): Promise<IMotorcycle | null> {
-    const carFound = await this.model.findOne({ _id });
-    return carFound;
-  }
-
   // public async updateById(_id: string, dataToUpdate: Partial<IMotorcycle>): Promise<IMotorcycle | null> {
   //   return this.model.findByIdAndUpdate(
   //     { _id },

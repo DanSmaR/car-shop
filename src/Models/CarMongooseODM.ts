@@ -15,12 +15,6 @@ export default class CarMongooseODM extends AbstractMongooseODM<ICar> implements
     super(schema, 'Car');
   }
 
-  public async findOne(_id: string): Promise<ICar | null> {
-    const carFound = await this.model.findOne({ _id });
-    console.log(this.model.modelName);
-    return carFound;
-  }
-
   public async updateById(_id: string, dataToUpdate: Partial<ICar>): Promise<ICar | null> {
     return this.model.findByIdAndUpdate(
       { _id },

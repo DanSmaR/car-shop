@@ -13,19 +13,4 @@ export default class MotorcycleService
   constructor(private motoModel: IVehicleModel<IMotorcycle> = new MotorcycleMongooseODM()) {
     super(motoModel);
   }
-
-  // private createMotoDomain(moto: IMotorcycle): Motorcycle {
-  //   return new Motorcycle(moto);
-  // }
-
-  // public async registerVehicle(motoData: IMotorcycle): Promise<Motorcycle> {
-  //   const newMoto = await this.motoModel.create(motoData);
-  //   return this.createMotoDomain(newMoto);
-  // }
-
-  // public async getVehicles(): Promise<Motorcycle[]> {
-  //   const motosFound = await this.motoModel.find();
-  //   const motosDomainList = motosFound.map((car) => this.createMotoDomain(car));
-  //   return motosDomainList;
-  // }
 }
