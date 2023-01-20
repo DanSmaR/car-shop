@@ -1,5 +1,5 @@
 import TVehicleInterfaceOptions from '../../Utils/Types/TVehicleInterfaceOptions';
-import TVehicleDomainOptions from '../../Utils/Types/TVehicleInterfaceOptions copy';
+import TVehicleDomainOptions from '../../Utils/Types/TVehicleDomainOptions';
 
 export default interface IVehicleService<
 T extends TVehicleInterfaceOptions, X extends TVehicleDomainOptions> {

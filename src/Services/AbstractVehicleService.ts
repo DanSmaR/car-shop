@@ -7,7 +7,7 @@ import notFoundMsg, { INotFoundMsg } from '../Utils/Erros/NotFoundMessages';
 // import notFoundMsg from '../Utils/Erros/NotFoundMessages';
 import HttpException from '../Utils/Exceptions/HttpException';
 import TVehicleInterfaceOptions from '../Utils/Types/TVehicleInterfaceOptions';
-import TVehicleDomainOptions from '../Utils/Types/TVehicleInterfaceOptions copy';
+import TVehicleDomainOptions from '../Utils/Types/TVehicleDomainOptions';
 
 export default abstract class VehicleService<
 T extends TVehicleInterfaceOptions, X extends TVehicleDomainOptions> {
