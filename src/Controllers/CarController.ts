@@ -1,16 +1,19 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import IController from '../Interfaces/IController';
 import ICar from '../Interfaces/ICar';
-import CarService from '../Services/CarService';
 import ValidateIdMiddleware from '../Middleware/validateIdMiddleware';
 import IVehicleService from '../Interfaces/Services/IVehicleService';
 import Car from '../Domains/Car';
+import VehicleService from '../Services/VehicleService';
+import CarMongooseODM from '../Models/CarMongooseODM';
 
 export default class CarController implements IController {
   private readonly _path = '/cars';
   private readonly _router = Router();
 
-  constructor(private carService: IVehicleService<ICar, Car> = new CarService()) {
+  constructor(
+    private carService: IVehicleService<ICar, Car> = new VehicleService(new CarMongooseODM()),
+  ) {
     this.initializeRoutes();
   }
 

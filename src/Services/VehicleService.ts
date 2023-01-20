@@ -7,19 +7,19 @@ import HttpException from '../Utils/Exceptions/HttpException';
 import TVehicleInterfaceOptions from '../Utils/Types/TVehicleInterfaceOptions';
 import TVehicleDomainOptions from '../Utils/Types/TVehicleDomainOptions';
 
-export default abstract class VehicleService<
+export default class VehicleService<
 T extends TVehicleInterfaceOptions, X extends TVehicleDomainOptions> {
   constructor(private vehicleModel: IVehicleModel<T>) {}
 
   public async registerVehicle(vehicleData: T): Promise<X> {
-    const newMoto = await this.vehicleModel.create(vehicleData);
-    return this.createVehicleDomain(newMoto);
+    const newVehicle = await this.vehicleModel.create(vehicleData);
+    return this.createVehicleDomain(newVehicle);
   }
 
   public async getVehicles(): Promise<X[]> {
-    const motosFound = await this.vehicleModel.find();
-    const motosDomainList = motosFound.map((car) => this.createVehicleDomain(car));
-    return motosDomainList;
+    const vehiclesFound = await this.vehicleModel.find();
+    const vehiclesDomainList = vehiclesFound.map((car) => this.createVehicleDomain(car));
+    return vehiclesDomainList;
   }
 
   public async getVehicleById(id: string): Promise<X> {

@@ -3,15 +3,18 @@ import IController from '../Interfaces/IController';
 import IMotorcycle from '../Interfaces/IMotorcycle';
 import Motorcycle from '../Domains/Motorcycle';
 import IVehicleService from '../Interfaces/Services/IVehicleService';
-import MotocycleService from '../Services/MotocycleService';
 import ValidateIdMiddleware from '../Middleware/validateIdMiddleware';
+import VehicleService from '../Services/VehicleService';
+import MotorcycleMongooseODM from '../Models/MotorcycleMongooseODM';
 
 export default class MotorcycleController implements IController {
   private readonly _path = '/motorcycles';
   private readonly _router = Router();
 
   constructor(
-    private motoService: IVehicleService<IMotorcycle, Motorcycle> = new MotocycleService(),
+    private motoService: IVehicleService<IMotorcycle, Motorcycle> = new VehicleService(
+      new MotorcycleMongooseODM(),
+    ),
   ) {
     this.initializeRoutes();
   }
