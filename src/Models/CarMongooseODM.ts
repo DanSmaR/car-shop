@@ -17,6 +17,7 @@ export default class CarMongooseODM extends AbstractMongooseODM<ICar> implements
 
   public async findOne(_id: string): Promise<ICar | null> {
     const carFound = await this.model.findOne({ _id });
+    console.log(this.model.modelName);
     return carFound;
   }
 

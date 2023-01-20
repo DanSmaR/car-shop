@@ -27,7 +27,7 @@ export default class MotorcycleController implements IController {
 
   private initializeRoutes(): void {
     this.router.post(this.path, this.registerMotoHandler);
-    // this.router.get(this.path, this.getCarsHandler);
+    this.router.get(this.path, this.getMotosHandler);
     // this.router.get(`${this.path}/:id`, ValidateIdMiddleware, this.getCarByIdHandler);
     // this.router.put(`${this.path}/:id`, ValidateIdMiddleware, this.updateCarByIdHandler);
   }
@@ -45,18 +45,18 @@ export default class MotorcycleController implements IController {
     }
   };
 
-  // private getCarsHandler = async (
-  //   _req: Request,
-  //   res: Response,
-  //   next: NextFunction,
-  // ): Promise<Response | void> => {
-  //   try {
-  //     const carsList = await this.motoService.getCars();
-  //     res.status(200).json(carsList);
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // };
+  private getMotosHandler = async (
+    _req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<Response | void> => {
+    try {
+      const carsList = await this.motoService.getVehicles();
+      res.status(200).json(carsList);
+    } catch (error) {
+      next(error);
+    }
+  };
 
   // private getCarByIdHandler = async (
   //   req: Request,
