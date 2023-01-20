@@ -2,7 +2,6 @@ import { Router, Request, Response, NextFunction } from 'express';
 import IController from '../Interfaces/IController';
 import IMotorcycle from '../Interfaces/IMotorcycle';
 import Motorcycle from '../Domains/Motorcycle';
-// import IMotorcycleService from '../Interfaces/IMotorcycleService';
 import IVehicleService from '../Interfaces/Services/IVehicleService';
 import MotocycleService from '../Services/MotocycleService';
 import ValidateIdMiddleware from '../Middleware/validateIdMiddleware';
@@ -29,7 +28,7 @@ export default class MotorcycleController implements IController {
     this.router.post(this.path, this.registerMotoHandler);
     this.router.get(this.path, this.getMotosHandler);
     this.router.get(`${this.path}/:id`, ValidateIdMiddleware, this.getMotosByIdHandler);
-    // this.router.put(`${this.path}/:id`, ValidateIdMiddleware, this.updateCarByIdHandler);
+    this.router.put(`${this.path}/:id`, ValidateIdMiddleware, this.updateMotoByIdHandler);
   }
 
   private registerMotoHandler = async (
@@ -71,16 +70,16 @@ export default class MotorcycleController implements IController {
     }
   };
 
-  // private updateCarByIdHandler = async (
-  //   req: Request<{ id: string }, unknown, Partial<IMotorcycle>>,
-  //   res: Response,
-  //   next: NextFunction,
-  // ): Promise<Response | void> => {
-  //   try {
-  //     const carUpdated = await this.motoService.updateCarById(req.params.id, req.body);
-  //     res.status(200).json(carUpdated);
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // };
+  private updateMotoByIdHandler = async (
+    req: Request<{ id: string }, unknown, Partial<IMotorcycle>>,
+    res: Response,
+    next: NextFunction,
+  ): Promise<Response | void> => {
+    try {
+      const carUpdated = await this.motoService.updateVehicleById(req.params.id, req.body);
+      res.status(200).json(carUpdated);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
