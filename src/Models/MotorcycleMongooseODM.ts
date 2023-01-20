@@ -17,14 +17,6 @@ class MotorcycleMongooseODM
     });
     super(schema, 'Motorcycle');
   }
-
-  // public async updateById(_id: string, dataToUpdate: Partial<IMotorcycle>): Promise<IMotorcycle | null> {
-  //   return this.model.findByIdAndUpdate(
-  //     { _id },
-  //     { ...dataToUpdate } as UpdateQuery<IMotorcycle>,
-  //     { new: true },
-  //   );
-  // }
 }
 
 export default MotorcycleMongooseODM;

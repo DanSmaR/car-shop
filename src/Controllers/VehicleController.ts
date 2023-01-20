@@ -4,17 +4,16 @@ import ValidateIdMiddleware from '../Middleware/validateIdMiddleware';
 import IVehicleService from '../Interfaces/Services/IVehicleService';
 import TVehicleInterfaceOptions from '../Utils/Types/TVehicleInterfaceOptions';
 import TVehicleDomainOptions from '../Utils/Types/TVehicleDomainOptions';
+import pathByModel from '../Utils/controllerPaths';
+import TControllerPaths from '../Utils/Types/TControllerPaths';
 
 export default class VehicleController<
   T extends TVehicleInterfaceOptions, X extends TVehicleDomainOptions> implements IController {
   private readonly _path: string;
   private readonly _router = Router();
 
-  constructor(
-    private vehicleService: IVehicleService<T, X>,
-    path: string,
-  ) {
-    this._path = path;
+  constructor(private vehicleService: IVehicleService<T, X>) {
+    this._path = pathByModel[vehicleService.modelName as keyof TControllerPaths];
     this.initializeRoutes();
   }
 

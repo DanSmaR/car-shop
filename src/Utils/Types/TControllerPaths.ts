@@ -1,6 +1,6 @@
 type TControllerPaths = {
-  cars: string;
-  motos: string;
+  Car: string;
+  Motorcycle: string;
 };
 
 export default TControllerPaths;

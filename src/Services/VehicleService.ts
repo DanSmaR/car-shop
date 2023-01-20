@@ -9,7 +9,11 @@ import TVehicleDomainOptions from '../Utils/Types/TVehicleDomainOptions';
 
 export default class VehicleService<
 T extends TVehicleInterfaceOptions, X extends TVehicleDomainOptions> {
-  constructor(private vehicleModel: IVehicleModel<T>) {}
+  public readonly modelName: string;
+
+  constructor(private vehicleModel: IVehicleModel<T>) {
+    this.modelName = vehicleModel.getModelName();
+  }
 
   public async registerVehicle(vehicleData: T): Promise<X> {
     const newVehicle = await this.vehicleModel.create(vehicleData);

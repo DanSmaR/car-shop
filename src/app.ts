@@ -38,8 +38,8 @@ export class App {
 const carService = new VehicleService<ICar, Car>(new CarMongooseODM());
 const motoService = new VehicleService<IMotorcycle, Motorcycle>(new MotorcycleMongooseODM());
 
-const carController = new VehicleController(carService, '/cars');
-const motoController = new VehicleController(motoService, '/motorcycles');
+const carController = new VehicleController(carService);
+const motoController = new VehicleController(motoService);
 
 const controllers: IController[] = [carController, motoController];
 
