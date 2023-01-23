@@ -29,7 +29,7 @@ describe('Testing the register car endpoint', function () {
     Sinon.stub(Model, 'create').resolves(carResponseData);
 
     const carService = new CarService();
-    const carCreated = await carService.registerCar(carRequestData);
+    const carCreated = await carService.registerVehicle(carRequestData);
 
     expect(carCreated).to.be.deep.equal(carResponseData);
 

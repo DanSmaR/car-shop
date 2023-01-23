@@ -12,6 +12,13 @@ export default abstract class AbstractMongooseODM<T> {
   protected model: Model<T>;
   protected schema: Schema;
   protected modelName: string;
+  protected static vehicleSchema = {
+    model: { type: String, required: true },
+    year: { type: Number, required: true },
+    color: { type: String, required: true },
+    status: { type: Boolean, required: false, default: false },
+    buyValue: { type: Number, required: true },
+  };
 
   constructor(_schema: Schema, _modelName: string) {
     this.schema = _schema;

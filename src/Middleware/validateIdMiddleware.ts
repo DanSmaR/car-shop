@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import AbstractMongooseODM from '../Models/AbstractMongooseODM';
+import AbstractMongooseODM from '../Models/AbstractODM';
 
 function validateIdMiddleware(
   req: Request,
