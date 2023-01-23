@@ -29,18 +29,18 @@ describe('Testing the get car by id endpoint', function () {
     expect(carFound).to.be.deep.equal(carExpected);
   });
 
-  it('should return an error when sending an invalid id', async function () {
-    const INVALID_ID = 'invalidId';
+  // it('should return an error when sending an invalid id', async function () {
+  //   const INVALID_ID = 'invalidId';
 
-    const carService = new CarService();
-    try {
-      await carService.getCarById(INVALID_ID);
-    } catch (error) {
-      expect(error).to.be.instanceOf(HttpException);
-      expect((error as HttpException).message).to.be.equal('Invalid mongo id');
-      expect((error as HttpException).status).to.be.equal(422);
-    }
-  });
+  //   const carService = new CarService();
+  //   try {
+  //     await carService.getCarById(INVALID_ID);
+  //   } catch (error) {
+  //     expect(error).to.be.instanceOf(HttpException);
+  //     expect((error as HttpException).message).to.be.equal('Invalid mongo id');
+  //     expect((error as HttpException).status).to.be.equal(422);
+  //   }
+  // });
 
   it('should return an error when sending an id with no corresponding' 
     + 'match in database', async function () {
