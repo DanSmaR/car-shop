@@ -1,10 +1,11 @@
-import { Schema, UpdateQuery } from 'mongoose';
+import { Schema } from 'mongoose';
 import ICar from '../Interfaces/ICar';
-import ICarModel from '../Interfaces/Models/ICarModel';
+import IVehicleModel from '../Interfaces/Models/IVehicleModel';
 import VehicleTypes from '../Utils/Enum/enumVehicle';
 import AbstractMongooseODM from './AbstractODM';
 
-export default class CarMongooseODM extends AbstractMongooseODM<ICar> implements ICarModel {
+export default class CarMongooseODM 
+  extends AbstractMongooseODM<ICar> implements IVehicleModel<ICar> {
   constructor() {
     const schema = new Schema<ICar>({
       ...AbstractMongooseODM.vehicleSchema,
@@ -13,13 +14,5 @@ export default class CarMongooseODM extends AbstractMongooseODM<ICar> implements
       type: { type: String, required: false, default: VehicleTypes.CAR },
     });
     super(schema, 'Car');
-  }
-
-  public async updateById(_id: string, dataToUpdate: Partial<ICar>): Promise<ICar | null> {
-    return this.model.findByIdAndUpdate(
-      { _id },
-      { ...dataToUpdate } as UpdateQuery<ICar>,
-      { new: true },
-    );
   }
 }
