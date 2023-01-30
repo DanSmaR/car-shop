@@ -6,36 +6,38 @@ import CarMongooseODM from '../../../src/Models/CarMongooseODM';
 import ICar from '../../../src/Interfaces/ICar';
 import Car from '../../../src/Domains/Car';
 
-describe('Testing the register car endpoint', function () {
-  it('should return a new car composed of the data sent and an id and status', async function () {
+describe('Testing the update car endpoint', function () {
+  it('should return an update car composed of' 
+    + 'the data sent and an id and status', async function () {
     const carRequestData = {
       model: 'Marea',
-      year: 2002,
-      color: 'Black',
+      year: 1992,
+      color: 'Red',
       status: true,
-      buyValue: 15.990,
-      doorsQty: 4,
+      buyValue: 12.000,
+      doorsQty: 2,
       seatsQty: 5,
     };
 
     const carResponseData = {
-      id: '63c5a8e47530e081402bb954',
+      id: '63d7c48425420874177efc27',
       model: 'Marea',
-      year: 2002,
-      color: 'Black',
+      year: 1992,
+      color: 'Red',
       status: true,
-      buyValue: 15.990,
-      doorsQty: 4,
+      buyValue: 12.000,
+      doorsQty: 2,
       seatsQty: 5,
       type: 'car',
     };
 
-    Sinon.stub(Model, 'create').resolves(carResponseData);
+    Sinon.stub(Model, 'findByIdAndUpdate').resolves(carResponseData);
 
     const carService = new VehicleService<ICar, Car>(new CarMongooseODM());
-    const carCreated = await carService.registerVehicle(carRequestData);
+    const carUpdated = await carService
+      .updateVehicleById('63d7c48425420874177efc27', carRequestData);
 
-    expect(carCreated).to.be.deep.equal(carResponseData);
+    expect(carUpdated).to.be.deep.equal(carResponseData);
 
     Sinon.restore();
   });

@@ -1,7 +1,10 @@
 import { expect } from 'chai';
 import Sinon from 'sinon';
 import { Model } from 'mongoose';
-import CarService from '../../../src/Services/CarService';
+import VehicleService from '../../../src/Services/VehicleService';
+import CarMongooseODM from '../../../src/Models/CarMongooseODM';
+import Car from '../../../src/Domains/Car';
+import ICar from '../../../src/Interfaces/ICar';
 
 describe('Testing the list cars endpoint', function () {
   it('should return a list of cars registered in the database', async function () {
@@ -14,6 +17,7 @@ describe('Testing the list cars endpoint', function () {
       buyValue: 15.990,
       doorsQty: 4,
       seatsQty: 5,
+      type: 'car',
     }, {
       id: '43c5a8e47530e081402bb955',
       model: 'Tempra',
@@ -23,12 +27,13 @@ describe('Testing the list cars endpoint', function () {
       buyValue: 35.990,
       doorsQty: 2,
       seatsQty: 5,
+      type: 'car',
     }];
 
     Sinon.stub(Model, 'find').resolves(carsExpectedList);
 
-    const carService = new CarService();
-    const carsFoundList = await carService.getCars();
+    const carService = new VehicleService<ICar, Car>(new CarMongooseODM());
+    const carsFoundList = await carService.getVehicles();
 
     expect(carsFoundList).to.be.deep.equal(carsExpectedList);
 

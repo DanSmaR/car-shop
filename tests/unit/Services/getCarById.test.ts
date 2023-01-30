@@ -1,13 +1,18 @@
 import { expect } from 'chai';
 import Sinon from 'sinon';
 import { Model } from 'mongoose';
-import CarService from '../../../src/Services/CarService';
+import VehicleService from '../../../src/Services/VehicleService';
+import CarMongooseODM from '../../../src/Models/CarMongooseODM';
 import HttpException from '../../../src/Utils/Exceptions/HttpException';
+import Car from '../../../src/Domains/Car';
+import ICar from '../../../src/Interfaces/ICar';
 
 describe('Testing the get car by id endpoint', function () {
   afterEach(function () {
     Sinon.restore();
   });
+
+  const carService = new VehicleService<ICar, Car>(new CarMongooseODM());
 
   it('should return an car registered in the database when sending a valid id', async function () {
     const carExpected = {
@@ -19,12 +24,12 @@ describe('Testing the get car by id endpoint', function () {
       buyValue: 15.990,
       doorsQty: 4,
       seatsQty: 5,
+      type: 'car',
     };
 
     Sinon.stub(Model, 'findOne').resolves(carExpected);
 
-    const carService = new CarService();
-    const carFound = await carService.getCarById('63c5a8e47530e081402bb954');
+    const carFound = await carService.getVehicleById('63c5a8e47530e081402bb954');
 
     expect(carFound).to.be.deep.equal(carExpected);
   });
@@ -35,9 +40,8 @@ describe('Testing the get car by id endpoint', function () {
     const carNotFoundResult = null;
     Sinon.stub(Model, 'findOne').resolves(carNotFoundResult);
 
-    const carService = new CarService();
     try {
-      await carService.getCarById(UNMATCHED_ID);
+      await carService.getVehicleById(UNMATCHED_ID);
     } catch (error) {
       expect(error).to.be.instanceOf(HttpException);
       expect((error as HttpException).message).to.be.equal('Car not found');
