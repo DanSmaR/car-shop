@@ -3,9 +3,9 @@ import IController from '../Interfaces/IController';
 import IMotorcycle from '../Interfaces/IMotorcycle';
 import Motorcycle from '../Domains/Motorcycle';
 // import IMotorcycleService from '../Interfaces/IMotorcycleService';
-import IVehicleService from '../Interfaces/IVehicleService';
+import IVehicleService from '../Interfaces/Services/IVehicleService';
 import MotocycleService from '../Services/MotocycleService';
-// import ValidateIdMiddleware from '../Middleware/validateIdMiddleware';
+import ValidateIdMiddleware from '../Middleware/validateIdMiddleware';
 
 export default class MotorcycleController implements IController {
   private readonly _path = '/motorcycles';
@@ -27,8 +27,8 @@ export default class MotorcycleController implements IController {
 
   private initializeRoutes(): void {
     this.router.post(this.path, this.registerMotoHandler);
-    // this.router.get(this.path, this.getCarsHandler);
-    // this.router.get(`${this.path}/:id`, ValidateIdMiddleware, this.getCarByIdHandler);
+    this.router.get(this.path, this.getMotosHandler);
+    this.router.get(`${this.path}/:id`, ValidateIdMiddleware, this.getMotosByIdHandler);
     // this.router.put(`${this.path}/:id`, ValidateIdMiddleware, this.updateCarByIdHandler);
   }
 
@@ -45,31 +45,31 @@ export default class MotorcycleController implements IController {
     }
   };
 
-  // private getCarsHandler = async (
-  //   _req: Request,
-  //   res: Response,
-  //   next: NextFunction,
-  // ): Promise<Response | void> => {
-  //   try {
-  //     const carsList = await this.motoService.getCars();
-  //     res.status(200).json(carsList);
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // };
+  private getMotosHandler = async (
+    _req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<Response | void> => {
+    try {
+      const carsList = await this.motoService.getVehicles();
+      res.status(200).json(carsList);
+    } catch (error) {
+      next(error);
+    }
+  };
 
-  // private getCarByIdHandler = async (
-  //   req: Request,
-  //   res: Response,
-  //   next: NextFunction,
-  // ): Promise<Response | void> => {
-  //   try {
-  //     const carFound = await this.motoService.getCarById(req.params.id);
-  //     res.status(200).json(carFound);
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // };
+  private getMotosByIdHandler = async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<Response | void> => {
+    try {
+      const carFound = await this.motoService.getVehicleById(req.params.id);
+      res.status(200).json(carFound);
+    } catch (error) {
+      next(error);
+    }
+  };
 
   // private updateCarByIdHandler = async (
   //   req: Request<{ id: string }, unknown, Partial<IMotorcycle>>,

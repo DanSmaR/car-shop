@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import IController from '../Interfaces/IController';
 import ICar from '../Interfaces/ICar';
-import ICarService from '../Interfaces/ICarService';
+import ICarService from '../Interfaces/Services/ICarService';
 import CarService from '../Services/CarService';
 import ValidateIdMiddleware from '../Middleware/validateIdMiddleware';
 
@@ -47,7 +47,7 @@ export default class CarController implements IController {
     next: NextFunction,
   ): Promise<Response | void> => {
     try {
-      const carsList = await this.carService.getCars();
+      const carsList = await this.carService.getVehicles();
       res.status(200).json(carsList);
     } catch (error) {
       next(error);

@@ -1,6 +1,7 @@
 import { Schema, UpdateQuery } from 'mongoose';
 import ICar from '../Interfaces/ICar';
-import ICarModel from '../Interfaces/ICarModel';
+import ICarModel from '../Interfaces/Models/ICarModel';
+import VehicleTypes from '../Utils/Enum/enumVehicle';
 import AbstractMongooseODM from './AbstractODM';
 
 export default class CarMongooseODM extends AbstractMongooseODM<ICar> implements ICarModel {
@@ -9,17 +10,9 @@ export default class CarMongooseODM extends AbstractMongooseODM<ICar> implements
       ...AbstractMongooseODM.vehicleSchema,
       doorsQty: { type: Number, required: true },
       seatsQty: { type: Number, required: true },
+      type: { type: String, required: false, default: VehicleTypes.CAR },
     });
     super(schema, 'Car');
-  }
-
-  public async find(): Promise<ICar[]> {
-    return this.model.find();
-  }
-
-  public async findOne(_id: string): Promise<ICar | null> {
-    const carFound = await this.model.findOne({ _id });
-    return carFound;
   }
 
   public async updateById(_id: string, dataToUpdate: Partial<ICar>): Promise<ICar | null> {
